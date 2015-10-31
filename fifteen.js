@@ -4,22 +4,35 @@ window.onload = function()
 	var pieces = puzzlearea.children;
 	var positionTop = 0;
 	var positionLeft = 0;
+	var backgroundPositionLeft = 0;
+	var backgroundPositionTop=0;
 
 	for(var i =0; i < pieces.length; i++)
 	{
 		pieces[i].className = "puzzlepiece";
-		pieces[i].style.top =  positionTop + "px";
+		pieces[i].style.top= positionTop + "px";
 		pieces[i].style.left = positionLeft + "px";
+		pieces[i].style.backgroundPositionX= backgroundPositionLeft +"px";
+		pieces[i].style.backgroundPositionY= backgroundPositionTop +"px";
 
-		if(positionLeft < 300)
+		if(positionLeft < 300 )
 		{
 			positionLeft = positionLeft + 100;
+			backgroundPositionLeft = backgroundPositionLeft - 100;
 			
 		}
 		else
 		{
 			positionLeft = 0;
+			backgroundPositionLeft = 0;
 			positionTop = positionTop + 100;
+			backgroundPositionTop = backgroundPositionTop - 100;
+			
 		}	
 	}
-}
+	
+
+};
+
+
+
