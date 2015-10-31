@@ -12,8 +12,8 @@ window.onload = function()
 		pieces[i].className = "puzzlepiece";
 		pieces[i].style.top= positionTop + "px";
 		pieces[i].style.left = positionLeft + "px";
-		pieces[i].style.backgroundPositionX= backgroundPositionLeft +"px";
-		pieces[i].style.backgroundPositionY= backgroundPositionTop +"px";
+		pieces[i].style.backgroundPosition= backgroundPositionLeft +"px" + backgroundPositionTop +"px";
+		
 
 		if(positionLeft < 300 )
 		{
