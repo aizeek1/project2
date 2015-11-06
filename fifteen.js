@@ -2,6 +2,7 @@
 window.onload = function(){
 	var puzzlepieces;
 	var puzzle = []; // creating an array to hold the puzzle pieces
+	var shuff= document.getElementById("shufflebutton");
     function fixTiles(piece, position){
         positionT(piece, position);
         positionL(piece, position);
@@ -86,6 +87,27 @@ window.onload = function(){
             }
         };
     }
+    function shuffle(puzzle) {
+    var currentIndex = puzzle.length, temporaryValue, randomIndex ;
+
+      // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = puzzle[currentIndex];
+    puzzle[currentIndex] = puzzle[randomIndex];
+    puzzle[randomIndex] = temporaryValue;
+    }
+
+    return puzzle;
+    }
+    shuff.onclick = function(){
+    	shuffle();
+    };
         function startGame(){ // this function will be initiated to start the game so that users can in teract with the puzzle
         layoutPuzzle();
         for (var k = 0; k < 15; k++){
