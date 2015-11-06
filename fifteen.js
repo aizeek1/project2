@@ -3,6 +3,7 @@ window.onload = function(){
 	var puzzlepieces;
 	var puzzle = []; // creating an array to hold the puzzle pieces
 	var shuff= document.getElementById("shufflebutton");
+	puzzlepieces = $$('#puzzlearea div');
     function fixTiles(piece, position){
         positionT(piece, position);
         positionL(piece, position);
@@ -10,13 +11,12 @@ window.onload = function(){
     }
     
     function layoutPuzzle(){ // creating the layout of the puzzle pieces 
-        puzzlepieces = $$('#puzzlearea div');
+
         var counter = 0;
         puzzlepieces.each(function(element)
         {
             element.addClassName('puzzlepiece');
             element.id = counter;
-            console.log(element.id);
             fixTiles(element, counter);
             puzzle[counter] = 1;
             counter++;
@@ -24,7 +24,7 @@ window.onload = function(){
         puzzle[15] = 0;
     }
     
-    function emptySpace(){
+   function emptySpace (){
         for (var tilePos = 0; tilePos < 16; tilePos++){
            if (puzzle[tilePos] === 0){
                 return tilePos;
@@ -59,56 +59,45 @@ window.onload = function(){
         positionT(piece, toMoveTo);
         positionL(piece, toMoveTo);
         puzzle[toMoveTo] = 1;
-        console.log(piece.id);
-        console.log(puzzle[piece.id]);
         puzzle[piece.id] = 0;
         piece.id = toMoveTo;
-        console.log(piece.id);
     }
     	
     function movePiece(piece){
         puzzlepieces[piece].onclick = function(){
             var canMoveTo = tileThatCanMove(parseInt(puzzlepieces[piece].id,10));
-            console.log("INDEX:" + canMoveTo);
             if (canMoveTo != -1){
                 move(puzzlepieces[piece], canMoveTo);
             }
         };
     }
-    
-    function onMouseHover(k){
-        puzzlepieces[k].onmouseover = function(){
-            var position = tileThatCanMove(parseInt(puzzlepieces[k].id,10));
+    function onMouseHover(p){
+        puzzlepieces[p].onmouseover = function(){
+            var position = tileThatCanMove(parseInt(puzzlepieces[p].id,10));
             if (position != -1){
-                puzzlepieces[k].addClassName('movablepiece');
+                puzzlepieces[p].addClassName('movablepiece');
             }
             else{
-                puzzlepieces[k].removeClassName('movablepiece');
+                puzzlepieces[p].removeClassName('movablepiece');
             }
         };
     }
     function shuffle(puzzle) {
-    var currentIndex = puzzle.length, temporaryValue, randomIndex ;
-
-      // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = puzzle[currentIndex];
-    puzzle[currentIndex] = puzzle[randomIndex];
-    puzzle[randomIndex] = temporaryValue;
+        var currentIndex = puzzle.length, randomIndex ;
+        
+         // While there remain elements to shuffle...
+         while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            puzzlepieces=$$('#puzzlearea div');
+            move(puzzlepieces[randomIndex],emptySpace());
+        }
     }
-
-    return puzzle;
-    }
-    shuff.onclick = function(){
-    	shuffle();
+        shuff.onclick = function(){
+        	shuffle(puzzle);
     };
-        function startGame(){ // this function will be initiated to start the game so that users can in teract with the puzzle
+	
+    function startGame(){ // this function will be initiated to start the game so that users can in teract with the puzzle
         layoutPuzzle();
         for (var k = 0; k < 15; k++){
             movePiece(k);
