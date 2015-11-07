@@ -69,7 +69,9 @@ window.onload = function(){
             if (canMoveTo != -1){
                 move(puzzlepieces[piece], canMoveTo);
             }
+    
         };
+      
     }
     function onMouseHover(p){
         puzzlepieces[p].onmouseover = function(){
@@ -84,16 +86,16 @@ window.onload = function(){
     }
     function shuffle(puzzle) {
         var currentIndex = puzzle.length, randomIndex ;
-        
+
          // While there remain elements to shuffle...
          while (0 !== currentIndex) {
             // Pick a remaining element...
             randomIndex = Math.floor(Math.random() * currentIndex);
             puzzlepieces=$$('#puzzlearea div');
-            move(puzzlepieces[randomIndex],emptySpace());
+            move(puzzlepieces[randomIndex],emptySpace()); // passing randomIndex and the emptySpace function to move, to move the pieces  */
         }
     }
-        shuff.onclick = function(){
+        shuff.onclick = function(){//when the shuffle button is clicked it initiates this function
         	shuffle(puzzle);
     };
 	
@@ -104,6 +106,7 @@ window.onload = function(){
             onMouseHover(k);
         }
      }
-    startGame();    
+ 
+    startGame();    //initiates the game
 };
 	
