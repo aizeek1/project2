@@ -108,7 +108,7 @@ window.onload = function(){
      }
  
     startGame();//initiates the game
-    shuffle();
+    shuffle(puzzle);
 	
 };
 	
